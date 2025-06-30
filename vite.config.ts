@@ -11,4 +11,5 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  // base: '/', // (optional, only if deploying to a subpath)
 })
