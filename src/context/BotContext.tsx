@@ -2,7 +2,6 @@ import React, { createContext, useContext, useState, useEffect } from "react";
 import data from "@/data/BotData.json";
 import type { BotContextType, BotsData, Bot, ChatEntry } from "@/types/types";
 import { generateId } from "@/utils/generateId";
-import { toast } from "sonner";
 
 // Create context
 const BotContext = createContext<BotContextType | undefined>(undefined);
@@ -207,11 +206,6 @@ export const BotProvider: React.FC<{ children: React.ReactNode }> = ({ children 
 
     saveBots(updated);
 
-    toast.success("Done!", {
-      description: `${botName} bot was created successfully.`,
-      duration: 3000,
-    });
-
   };
 
   // existing bot ko edit krne ka method
@@ -236,11 +230,6 @@ export const BotProvider: React.FC<{ children: React.ReactNode }> = ({ children 
 
     saveBots(updated);
 
-    toast.success("Done!", {
-      description: `${botName} bot was edit successfully.`,
-      duration: 3000,
-    });
-
   };
 
   const deleteBot = (botId: string) => {
@@ -252,10 +241,6 @@ export const BotProvider: React.FC<{ children: React.ReactNode }> = ({ children 
 
     saveBots(updated);
 
-    toast.success("Done!", {
-      description: `Bot was deleted successfully.`,
-      duration: 3000,
-    });
   }
 
   const resetBots = () => {

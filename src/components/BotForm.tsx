@@ -17,7 +17,6 @@ import { useBotContext } from "@/context/BotContext";
 import type { BotCategory, BotFormProps } from "@/types/types";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { RotateCcw, Sparkles, } from "lucide-react";
-import { toast } from "sonner";
 
 const BotForm: React.FC<BotFormProps> = ({ botId, openBotForm }) => {
     const [addModel, setAddModel] = useState("gemini");
@@ -315,8 +314,6 @@ const BotForm: React.FC<BotFormProps> = ({ botId, openBotForm }) => {
                                         deleteBot(botId);
                                         openBotForm?.(false)
                                         navigate("/");
-                                    } else {
-                                        toast.error("Bot Not Found!!!")
                                     }
                                 }}
                                 variant="destructive"
