@@ -3,9 +3,17 @@ import type { ChatEntry } from "@/types/types";
 import { CalendarDays, FileText, Trash } from "lucide-react";
 import { Button } from "./ui/button";
 import { exportChatToPDF } from "@/utils/exportChatToPDF";
+import { useSidebar } from "./ui/sidebar";
 
 const SideChatsHistory: React.FC<{ botID?: string }> = ({ botID }) => {
   const { bots, selectChat, deleteChat } = useBotContext();
+
+  // navbar open close ke liye hai shadcn built in feature hai
+  const { isMobile, setOpenMobile } = useSidebar();
+
+  const handleNavClick = () => {
+    if (isMobile) setOpenMobile(false);
+  };
 
   const foundBot =
     botID && bots
@@ -54,7 +62,7 @@ const SideChatsHistory: React.FC<{ botID?: string }> = ({ botID }) => {
                 })
                 .map((entry) => (
                   <div
-                    onClick={() => selectChat(botID, entry.id)}
+                    onClick={() => (selectChat(botID, entry.id), handleNavClick())}
                     key={entry.id}
                     className="relative text-sm text-neutral-800 dark:text-neutral-300 py-1 px-2 rounded-md hover:bg-secondary cursor-pointer group"
                   >
@@ -64,7 +72,7 @@ const SideChatsHistory: React.FC<{ botID?: string }> = ({ botID }) => {
                         e.stopPropagation();
                         deleteChat(botID, entry.id);
                       }}
-                      className="absolute top-1/2 -translate-y-1/2 right-1 bg-red-100 text-red-700 p-1 rounded-md cursor-pointer hidden group-hover:flex"
+                      className="absolute top-1/2 -translate-y-1/2 right-1 bg-red-100 text-red-700 p-1 rounded-md cursor-pointer sm:hidden group-hover:flex"
                     >
                       <Trash size={12} />
                     </button>

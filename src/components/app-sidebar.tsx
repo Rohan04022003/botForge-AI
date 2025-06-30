@@ -10,6 +10,7 @@ import {
   SidebarMenuSub,
   SidebarMenuSubButton,
   SidebarMenuSubItem,
+  useSidebar,
 } from "@/components/ui/sidebar"
 import { SidebarLinks } from "@/data/SidebarLinks";
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
@@ -28,9 +29,15 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const navigate = useNavigate();
   const { botID } = useParams();
   const { user } = useUser()
+  const { isMobile, setOpenMobile } = useSidebar();
 
   // yaha pe usreData ke help se avatarList ko fetch kr rhe hai avatar image show krne ke liye gender ke according.
   const presentUser = avatarList.filter((avatar) => avatar.gender.toLowerCase() === user?.gender)
+
+  // Helper to close sidebar on mobile
+  const handleNavClick = () => {
+    if (isMobile) setOpenMobile(false);
+  };
 
   return (
     <Sidebar variant="floating" {...props}>
@@ -38,7 +45,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <SidebarMenu>
           <SidebarMenuItem>
             <Button className="bg-transparent text-primary shadow-none hover:bg-transparent flex items-center justify-start px-1">
-              <Link to="/">
+              <Link to="/" onClick={handleNavClick}>
                 <div className="flex items-center gap-2 leading-none">
                   <img src={logo} alt="botforge" className="w-7" />
                   <span className="font-medium text-lg">BotForge</span>
@@ -56,7 +63,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                 <SidebarMenuSub className="ml-0 border-l-0 px-1.5">
                   <SidebarMenuSubItem>
                     <SidebarMenuSubButton asChild isActive={location.pathname === item.path ? true : false}>
-                      <Link to={item.path}>{<item.icon />}{item.title}</Link>
+                      <Link to={item.path} onClick={handleNavClick}>{<item.icon />}{item.title}</Link>
                     </SidebarMenuSubButton>
                   </SidebarMenuSubItem>
                 </SidebarMenuSub>
@@ -68,7 +75,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarContent>
 
 
-      <div onClick={() => navigate("/settings")} className="user-info h-16 rounded-b-md flex justify-between items-center gap-2 p-1 bg-secondary cursor-pointer">
+      <div onClick={() => { navigate("/settings"); handleNavClick(); }} className="user-info h-16 rounded-b-md flex justify-between items-center gap-2 p-1 bg-secondary cursor-pointer">
         <div className="user-icon rounded-full flex items-center gap-2">
           <img src={presentUser[0]?.avatar} alt="user-avtar" className="w-10 rounded-full" />
           <div className="flex flex-col gap-[1px]">
