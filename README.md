@@ -1,5 +1,7 @@
 # AI Chatbot
 
+[Live Demo](https://bot-forge-ai.vercel.app/) | [GitHub Repository](https://github.com/Rohan04022003/botForge-AI)
+
 ## 🧠 Overview
 AI Chatbot is a full-featured, modern web application that enables users to interact with multiple state-of-the-art AI models (Cohere, Gemini, Mistral, and more) through a seamless chat interface. Designed for flexibility, extensibility, and a delightful user experience, this project is ideal for learning, prototyping, or deploying your own AI-powered assistant.
 
@@ -20,7 +22,7 @@ AI Chatbot is a full-featured, modern web application that enables users to inte
 ---
 
 ## 🚀 Demo
-*If you have a live demo, add the link here.*
+[Live Demo](https://bot-forge-ai.vercel.app/)
 
 ---
 
@@ -80,7 +82,7 @@ AI Chatbot/
 ### Installation Steps
 1. **Clone the repository:**
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/Rohan04022003/botForge-AI.git
    cd AI-Chatbot
    ```
 2. **Install dependencies:**
