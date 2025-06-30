@@ -19,7 +19,7 @@ const UserOnboardingModal = () => {
 
     return (
         <Dialog open>
-            <DialogContent className="max-w-sm w-[95%]">
+            <DialogContent className="max-w-sm w-[95%]" showCloseButton={false}>
                 <DialogHeader>
                     <DialogTitle className="text-xl font-bold text-center">
                         👋 Welcome to <span className="text-primary">BotForge</span>
