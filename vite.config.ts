@@ -1,15 +1,14 @@
-import path from "path"
-import tailwindcss from "@tailwindcss/vite"
-import react from "@vitejs/plugin-react"
-import { defineConfig } from "vite"
+import path from "path";
+import react from "@vitejs/plugin-react";
+import { defineConfig } from "vite";
 
-// https://vite.dev/config/
+// For Vercel, base should be "/"
 export default defineConfig({
-  plugins: [ react(), tailwindcss()],
+  base: "/", // ✅ KEEP this as default
+  plugins: [react()],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
   },
-  // base: '/', // (optional, only if deploying to a subpath)
-})
+});
