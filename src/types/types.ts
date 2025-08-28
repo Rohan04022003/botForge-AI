@@ -45,6 +45,8 @@ export type BotContextType = {
     setBotResponse: (res: string) => void;
     userMessage: string;
     setUserMessage: (userMessage: string) => void;
+    listening: boolean;
+    setListening: (listening: boolean) => void;
     saveBotModel: (botId: string, modelValue: string) => void;
     updateChat: (botId: string, entry: ChatEntry) => void;
     resetAllChats: () => void;

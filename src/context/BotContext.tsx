@@ -15,6 +15,7 @@ export const BotProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const [title, setTitle] = useState<string>("");
   const [userMessage, setUserMessage] = useState<string>("");
   const [botResponse, setBotResponse] = useState<string>("");
+    const [listening, setListening] = useState<boolean>(false); // yeh voice listening active hai ya nahi uske liye hai.
 
   // Load from localStorage or fallback
   useEffect(() => {
@@ -274,6 +275,8 @@ export const BotProvider: React.FC<{ children: React.ReactNode }> = ({ children 
         editBot,
         deleteBot,
         resetBots,
+        listening,
+        setListening
       }}
     >
       {children}

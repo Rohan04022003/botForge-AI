@@ -26,7 +26,7 @@ const SideChatsHistory: React.FC<{ botID?: string }> = ({ botID }) => {
       <div className="flex items-center justify-between">
         <h2 className="sticky top-0 dark:bg-[#171717] bg-[#FAFAFA] py-1 w-full text-sm font-semibold text-neutral-600 dark:text-neutral-300 z-20">Chats</h2>
         <Button
-          size="sm"
+          size={"sm"}
           onClick={() =>
             foundBot?.chatHistory &&
             Object.keys(foundBot.chatHistory).length &&
@@ -64,7 +64,7 @@ const SideChatsHistory: React.FC<{ botID?: string }> = ({ botID }) => {
                   <div
                     onClick={() => (selectChat(botID, entry.id), handleNavClick())}
                     key={entry.id}
-                    className="relative text-sm text-neutral-800 dark:text-neutral-300 py-1 px-2 rounded-md hover:bg-secondary cursor-pointer group"
+                    className="relative text-sm text-neutral-800 dark:text-neutral-400 py-1 px-2 rounded-md hover:bg-secondary cursor-pointer group/chat"
                   >
                     {entry.title.slice(0, 30) + (entry.title.length > 25 ? "..." : "")}
                     <button
@@ -72,7 +72,7 @@ const SideChatsHistory: React.FC<{ botID?: string }> = ({ botID }) => {
                         e.stopPropagation();
                         deleteChat(botID, entry.id);
                       }}
-                      className="absolute top-1/2 -translate-y-1/2 right-1 bg-red-100 text-red-700 p-1 rounded-md cursor-pointer sm:hidden group-hover:flex"
+                      className="absolute top-1/2 -translate-y-1/2 right-1 bg-red-100 text-red-700 p-1 rounded-sm cursor-pointer sm:hidden group-hover/chat:flex"
                     >
                       <Trash size={12} />
                     </button>

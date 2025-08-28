@@ -1,11 +1,11 @@
 import {
     ArrowRight,
+    ArrowUp,
     Bot as BotIcon,
     ChevronDown,
     Hammer,
     Minus,
     Search,
-    SendHorizonal,
 } from "lucide-react";
 import { Button } from "./ui/button";
 import {
@@ -23,6 +23,7 @@ import { handleSendMessage } from "@/utils/handleSendMessage";
 import { modelOptions } from "@/data/ModelOptions";
 import GreetingHeader from "./GreetingHeader";
 import type { HeroProps } from "@/types/types";
+import { VoiceInput } from "./VoiceInput";
 
 
 
@@ -40,7 +41,8 @@ const Hero: React.FC<HeroProps> = ({ activeView, setActiveView, search, setSearc
         saveBotModel,
         setBotResponse,
         setLoading,
-        updateChat
+        updateChat,
+        setListening
     } = useBotContext();
 
     useEffect(() => {
@@ -151,13 +153,19 @@ const Hero: React.FC<HeroProps> = ({ activeView, setActiveView, search, setSearc
                                             </SelectContent>
                                         </Select>
                                     </div>
-                                    <Button
-                                        onClick={handleSend}
-                                        disabled={!message}
-                                        className={`w-8 h-8 rounded-full ${message ? "bg-blue-500 hover:bg-blue-400" : "bg-secondary"}`}
-                                    >
-                                        <SendHorizonal color={message ? "white" : "gray"} size={15} />
-                                    </Button>
+                                    <div className="flex items-center gap-3">
+                                        {/* voice input componenets */}
+
+                                        <VoiceInput setMessage={setMessage} />
+
+                                        <Button
+                                            onClick={() => {handleSend(); setListening(false)}}
+                                            disabled={!message}
+                                            className={`w-8 h-8 rounded-full ${message ? "bg-blue-500 hover:bg-blue-400" : "border border-neutral-600 bg-transparent"}`}
+                                        >
+                                            <ArrowUp color={message ? "white" : "gray"} size={15} />
+                                        </Button>
+                                    </div>
                                 </div>
                             </>
                         ) : (
@@ -171,7 +179,7 @@ const Hero: React.FC<HeroProps> = ({ activeView, setActiveView, search, setSearc
                                 />
                                 <Button
                                     disabled={!search}
-                                    className={`w-8 h-8 rounded-full ${search ? "bg-blue-500 hover:bg-blue-400" : "bg-secondary"}`}
+                                    className={`w-8 h-8 rounded-full ${search ? "bg-blue-500 hover:bg-blue-400" : "border border-neutral-600 bg-transparent"}`}
                                 >
                                     <ArrowRight color={search ? "white" : "gray"} size={15} />
                                 </Button>

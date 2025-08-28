@@ -1,4 +1,4 @@
-import { SendHorizonal, Minus, ChevronDown } from "lucide-react";
+import { Minus, ChevronDown, ArrowUp } from "lucide-react";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import logo from "@/assets/logo.svg";
@@ -6,8 +6,15 @@ import { useBotContext } from "@/context/BotContext";
 import type { Bot } from "@/types/types";
 import BotResponseBox from "@/components/BotResponseBox";
 import { handleSendMessage } from "@/utils/handleSendMessage";
-import { Select, SelectContent, SelectItem, SelectTrigger } from "@radix-ui/react-select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+} from "@radix-ui/react-select";
 import { modelOptions } from "@/data/ModelOptions";
+import { Button } from "@/components/ui/button";
+import { VoiceInput } from "@/components/VoiceInput";
 
 const ChatInterface = () => {
   const { botID } = useParams();
@@ -28,6 +35,7 @@ const ChatInterface = () => {
     setBotRole,
     updateChat,
     saveBotModel,
+    setListening
   } = useBotContext();
 
   useEffect(() => {
@@ -53,12 +61,10 @@ const ChatInterface = () => {
   }, [botID, bots, setModel, setBotRole]);
 
   const handleModelChange = (newModel: string, id: string = "0") => {
-    console.log(newModel)
+    console.log(newModel);
     setModel(newModel);
     saveBotModel(newModel, id);
   };
-
-
 
   const handleSend = async () => {
     handleSendMessage({
@@ -72,7 +78,7 @@ const ChatInterface = () => {
       updateChat,
       setMessage,
     });
-    setMessage("")
+    setMessage("");
   };
 
   const showGreeting = !userMessage && !botResponse && !loading;
@@ -83,10 +89,15 @@ const ChatInterface = () => {
       <div className="flex w-full justify-center flex-grow overflow-hidden">
         <div className="lg:w-2/3 w-full py-4 overflow-y-auto no-scrollbar relative">
           <div className="space-y-8">
-
             {showGreeting && currentBot?.greetings && (
-              <div className="w-full flex justify-center items-center h-[50vh]">
-                <p className="text-[1.2rem] text-center dark:text-neutral-300 text-neutral-700">
+              <div className="w-full flex flex-col justify-center items-center gap-1 h-[65vh]">
+                <div className="flex items-center gap-2">
+                  <img src={logo} className="w-6" />
+                  <p className="text-[1.5rem] text-neutral-500">
+                    {currentBot.name}
+                  </p>
+                </div>
+                <p className="md:text-[1.2rem] text-[.8rem] text-center text-neutral-500 italic">
                   {currentBot.greetings}
                 </p>
               </div>
@@ -96,7 +107,7 @@ const ChatInterface = () => {
 
             {userMessage && (
               <div className="user-query flex justify-end w-full">
-                <div className="md:max-w-[80%] max-w-[90%] w-fit bg-secondary py-3 px-4 rounded-3xl">
+                <div className="md:max-w-[80%] max-w-[90%] w-fit bg-secondary py-3 px-4 rounded-xl">
                   <p className="text-[0.95rem] dark:text-neutral-300 text-neutral-700">
                     {userMessage}
                   </p>
@@ -121,12 +132,13 @@ const ChatInterface = () => {
 
             {botResponse && (
               <div className="response-from-ai flex justify-start w-full">
-                <div className="md:max-w-[90%] max-w-[95%] w-fit">
-                  <p className="text-[0.95rem] text-left dark:text-neutral-300 text-neutral-700">
+                <div className="w-full">
+                  <div className="text-[0.95rem] text-left dark:text-neutral-300 text-neutral-700">
                     <div className="prose dark:prose-invert max-w-none text-[0.95rem]">
-                      <BotResponseBox response={botResponse} /> { /*iska use code ko structure krne ke liye kiya hai */}
+                      <BotResponseBox response={botResponse} />{" "}
+                      {/*iska use code ko structure krne ke liye kiya hai */}
                     </div>
-                  </p>
+                  </div>
                 </div>
               </div>
             )}
@@ -135,10 +147,10 @@ const ChatInterface = () => {
       </div>
 
       {/* Input Area */}
-      <div className="w-full flex justify-center sticky bottom-0 pb-5 pt-1 bg-background z-10">
+      <div className="w-full flex justify-center sticky bottom-0 pt-1 pb-2 bg-background z-10">
         <div className="lg:w-2/3 w-full bg-secondary rounded-xl flex flex-col p-3 gap-3 backdrop-blur-md">
           <textarea
-            placeholder="Type your message..."
+            placeholder="Type or Speak I'm listening..."
             className="flex-1 resize-none min-h-[60px] bg-transparent outline-none dark:text-white placeholder-neutral-500"
             value={message}
             onChange={(e) => setMessage(e.target.value)}
@@ -153,28 +165,36 @@ const ChatInterface = () => {
             <div className="flex items-center gap-2">
               <span className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-300">
                 <img src={logo} alt="botforge-ai" className="w-4" />
-                <span>{currentBot?.name}</span>
+                <span className="text-[.8rem]">{currentBot?.name}</span>
               </span>
               <Minus className="w-4 h-6 rotate-90" />
               <div className="relative">
-                <Select value={model} onValueChange={(newModel) => handleModelChange(newModel, currentBot?.id)}>
-                  <SelectTrigger className="flex items-center gap-2 px-2 py-1 border rounded-sm outline-none cursor-pointer">
+                <Select
+                  value={model}
+                  onValueChange={(newModel) =>
+                    handleModelChange(newModel, currentBot?.id)
+                  }
+                >
+                  <SelectTrigger className="flex items-center gap-2 md:px-2 md:py-1 p-2 border md:rounded-sm rounded-full outline-none cursor-pointer">
                     <img
                       src={modelOptions.find((m) => m.value === model)?.icon}
                       alt={model}
-                      className="w-4"
+                      className="w-3"
                     />
-                    <span>{model.charAt(0).toUpperCase() + model.slice(1)}</span>
-                    <ChevronDown size={10} className="mt-1" />
+                    <span className="text-[.7rem]">
+                      {model.charAt(0).toUpperCase() + model.slice(1)}
+                    </span>
+                    <ChevronDown size={10} className="mt-[.1rem]" />
                   </SelectTrigger>
-                  <SelectContent className="bg-background px-1 py-2 rounded-md cursor-pointer fixed left-[36%] top-[14%]">
+                  <SelectContent className="bg-background px-1 py-2 rounded-md cursor-pointer fixed left-[15%] top-[20%]">
                     {modelOptions.map(({ label, value, icon }) => (
                       <SelectItem
                         key={value}
                         value={value}
-                        className={`flex items-center gap-2 text-sm px-4 py-1 hover:bg-secondary border-none outline-none rounded-md ${currentBot?.model === value ? "bg-secondary" : ""}`}
+                        className={`flex items-center gap-2 text-[.7rem] px-4 py-1 hover:bg-secondary border-none outline-none rounded-md ${currentBot?.model === value ? "bg-secondary" : ""
+                          }`}
                       >
-                        <img src={icon} alt={label} className="w-4" />
+                        <img src={icon} alt={label} className="w-3" />
                         {label}
                       </SelectItem>
                     ))}
@@ -182,13 +202,22 @@ const ChatInterface = () => {
                 </Select>
               </div>
             </div>
-            <button
-              className="dark:text-white text-neutral-600 p-2 transition cursor-pointer"
-              onClick={handleSend}
-              disabled={loading}
-            >
-              <SendHorizonal size={20} />
-            </button>
+            <div className="flex items-center gap-3">
+              {/* voice input componenets */}
+
+              <VoiceInput setMessage={setMessage} />
+
+              <Button
+                onClick={() => { handleSend(); setListening(false) }}
+                disabled={!message}
+                className={`w-8 h-8 rounded-full ${message
+                  ? "bg-blue-500 hover:bg-blue-400"
+                  : "border-2 border-neutral-600 bg-transparent"
+                  }`}
+              >
+                <ArrowUp color={message ? "white" : "gray"} size={15} />
+              </Button>
+            </div>
           </div>
         </div>
       </div>

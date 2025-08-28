@@ -1,6 +1,40 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+.reset-tw :not(pre):not(code){
+  all: revert;
+}
+
+/* code copy button styling */
+
+.code-copy-btn {
+  position: absolute;
+  right: 0.5rem;   /* right-2 */
+  top: 0.5rem;     /* top-2 */
+  padding: 0.5rem; /* p-2 */
+  border-radius: 0.375rem; /* rounded-md */
+  background-color: #e5e5e5; /* bg-neutral-200 */
+  transition: background-color 0.2s ease-in-out; /* transition-colors */
+  cursor: pointer;
+}
+
+.code-copy-btn:hover {
+  background-color: #d4d4d4; /* hover:bg-neutral-300 */
+}
+
+/* Dark Mode */
+@media (prefers-color-scheme: dark) {
+  .code-copy-btn {
+    background-color: #404040; /* dark:bg-neutral-700 */
+  }
+  .code-copy-btn:hover {
+    background-color: #525252; /* dark:hover:bg-neutral-600 */
+  }
+}
+
+/* ------------------------------------------------------------------------- */
+
+
 *{
   font-family: "Roboto", sans-serif;
   font-optical-sizing: auto;

@@ -3,121 +3,113 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
-import { Check, Copy } from "lucide-react";
+import { useTheme } from "@/context/theme-provider";
+import copy from "@/assets/copy.png";
+import right from "@/assets/right.png";
 
 type Props = {
   response: string;
 };
 
 const BotResponseBox: React.FC<Props> = ({ response }) => {
-  const [copied, setCopied] = useState<string | null>(null);
+  const [copiedId, setCopiedId] = useState<number | null>(null);
+  const { theme } = useTheme();
 
-  const copyToClipboard = (text: string, language: string) => {
+  const copyToClipboard = (text: string, id: number) => {
     navigator.clipboard.writeText(text);
-    setCopied(language);
-    setTimeout(() => setCopied(null), 2000);
+    setCopiedId(id);
+    setTimeout(() => setCopiedId(null), 2000);
   };
 
   return (
-    <div className="response-from-ai flex justify-start w-full">
-      <div className="md:max-w-[95%] max-w-[98%] prose dark:prose-invert text-[0.95rem] leading-7">
+    <div
+      className="reset-tw"
+      style={{ display: "flex", justifyContent: "flex-start", width: "100%" }}
+    >
+      <div
+        style={{
+          maxWidth: "95%",
+          fontSize: "0.95rem",
+          lineHeight: "1.75rem",
+        }}
+      >
         <ReactMarkdown
           remarkPlugins={[remarkGfm]}
           components={{
-
             p: ({ children }) => <>{children}</>,
 
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            code: ({ inline, className, children }: any) => {
+            code: ({ inline, className, children, node }: any) => {
               const match = /language-(\w+)/.exec(className || "");
+              const uniqueId = node?.position?.start.offset ?? Math.random(); // unique id per block
+
               return !inline && match ? (
-                <div className="relative group">
+                <div style={{ position: "relative" }}>
                   <button
                     onClick={() =>
                       copyToClipboard(
                         String(children).replace(/\n$/, ""),
-                        match[1]
+                        uniqueId
                       )
                     }
-                    className="absolute right-2 top-2 p-2 rounded-md bg-neutral-200 dark:bg-neutral-700 hover:bg-neutral-300 dark:hover:bg-neutral-600 transition-colors cursor-pointer"
+                    style={{
+                      position: "absolute",
+                      right: "0.5rem",
+                      top: "0.4rem",
+                      padding: "0.4rem",
+                      borderRadius: "5px",
+                      cursor: "pointer",
+                      border: "2px solid gray",
+                      backgroundColor: "transparent",
+                    }}
                   >
-                    {copied === match[1] ? (
-                      <Check className="w-4 h-4 dark:text-green-300 text-green-800" />
+                    {copiedId === uniqueId ? (
+                      <img
+                        src={right}
+                        style={{
+                          width: ".9rem",
+                          height: ".7rem",
+                          color: "green",
+                          display: "inline-block",
+                        }}
+                      />
                     ) : (
-                      <Copy className="w-4 h-4" />
+                      <img
+                        src={copy}
+                        style={{
+                          width: ".9rem",
+                          height: ".7rem",
+                          display: "inline-block",
+                        }}
+                      />
                     )}
                   </button>
                   <SyntaxHighlighter
                     style={vscDarkPlus}
                     language={match[1]}
                     PreTag="div"
-                    className="rounded-md my-2"
+                    customStyle={{
+                      borderRadius: "6px",
+                      marginTop: "0.5rem",
+                      marginBottom: "0.5rem",
+                    }}
                   >
                     {String(children).replace(/\n$/, "")}
                   </SyntaxHighlighter>
                 </div>
               ) : (
-                <code className="bg-neutral-100 dark:bg-neutral-800 px-1 py-0.5 rounded text-sm">
+                <code
+                  style={{
+                    background: `${theme === "dark" ? "#353535" : "#e1e1e1"}`,
+                    padding: "2px 4px",
+                    borderRadius: "4px",
+                    fontSize: "0.85rem",
+                  }}
+                >
                   {children}
                 </code>
               );
             },
-
-            // ✅ Custom Headings
-            h1: ({ children }) => (
-              <h1 className="text-2xl font-bold mb-4 mt-6 text-neutral-900 dark:text-neutral-100">
-                {children}
-              </h1>
-            ),
-            h2: ({ children }) => (
-              <h2 className="text-xl font-bold mb-3 mt-5 text-neutral-800 dark:text-neutral-200">
-                {children}
-              </h2>
-            ),
-            h3: ({ children }) => (
-              <h3 className="text-lg font-bold mb-2 mt-4 text-neutral-700 dark:text-neutral-300">
-                {children}
-              </h3>
-            ),
-            h4: ({ children }) => (
-              <h4 className="text-base font-bold mb-2 mt-3 text-neutral-600 dark:text-neutral-400">
-                {children}
-              </h4>
-            ),
-
-            // ✅ Lists
-            ul: ({ children }) => (
-              <ul className="list-disc pl-6 mb-4 space-y-2 text-neutral-700 dark:text-neutral-300">
-                {children}
-              </ul>
-            ),
-            ol: ({ children }) => (
-              <ol className="list-decimal pl-6 mb-4 space-y-2 text-neutral-700 dark:text-neutral-300">
-                {children}
-              </ol>
-            ),
-            li: ({ children }) => (
-              <li className="leading-7">{children}</li>
-            ),
-
-            // ✅ Blockquote
-            blockquote: ({ children }) => (
-              <blockquote className="border-l-4 border-neutral-300 dark:border-neutral-600 pl-4 italic my-4 text-neutral-600 dark:text-neutral-400">
-                {children}
-              </blockquote>
-            ),
-
-            // ✅ Links
-            a: ({ href, children }) => (
-              <a
-                href={href}
-                className="text-blue-600 dark:text-blue-400 hover:underline"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {children}
-              </a>
-            ),
           }}
         >
           {response}
