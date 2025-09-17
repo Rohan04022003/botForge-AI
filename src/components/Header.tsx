@@ -37,6 +37,7 @@ const Header = () => {
                 <div className="flex items-center">
                     {/* Theme toggle ke liye */}
                     <Button
+                    aria-label="theme switcher button"
                         onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
                         variant="outline"
                         size="icon"

@@ -114,6 +114,7 @@ const BotForm: React.FC<BotFormProps> = ({ botId, openBotForm }) => {
                         {botId ? currentBotSettings?.name : "Create a New Bot"}
                     </h2>
                     <Link
+                        aria-label="go to bot creation guide page"
                         to="/bot-creation-guide"
                         className={`${currentBotSettings ? "hidden" : "block"} text-sm underline text-neutral-500 dark:text-neutral-500 hover:text-neutral-600 transition`}
                     >
@@ -126,6 +127,7 @@ const BotForm: React.FC<BotFormProps> = ({ botId, openBotForm }) => {
                     <div className="space-y-2">
                         <Label htmlFor="botName">Bot Name</Label>
                         <Input
+                            aria-label="bot name"
                             className="shadow-none"
                             id="botName"
                             placeholder="Enter bot name"
@@ -146,6 +148,7 @@ const BotForm: React.FC<BotFormProps> = ({ botId, openBotForm }) => {
                     <div className="space-y-2">
                         <Label htmlFor="greetings">Greetings</Label>
                         <Input
+                            aria-label="set bot greetings"
                             className="shadow-none"
                             id="greetings"
                             placeholder="Hello there, how can I help you today?"
@@ -162,6 +165,7 @@ const BotForm: React.FC<BotFormProps> = ({ botId, openBotForm }) => {
                     <div className="space-y-2">
                         <Label htmlFor="description">Short Description</Label>
                         <Input
+                            aria-label="set bot description"
                             className="shadow-none"
                             id="description"
                             placeholder="Max 100 characters"
@@ -178,6 +182,7 @@ const BotForm: React.FC<BotFormProps> = ({ botId, openBotForm }) => {
                     <div className="space-y-2">
                         <Label htmlFor="role">Bot Role / Behavior</Label>
                         <Textarea
+                            aria-label="set bot role"
                             id="role"
                             placeholder="Define bot's instructions, tone, and purpose..."
                             value={role}

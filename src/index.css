@@ -1,7 +1,19 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-.reset-tw :not(pre):not(code){
+@font-face {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../public/fonts/roboto-v49-latin-regular.woff2") format("woff2");
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+}
+
+.reset-tw :not(pre):not(code) {
   all: revert;
 }
 
@@ -9,8 +21,8 @@
 
 .code-copy-btn {
   position: absolute;
-  right: 0.5rem;   /* right-2 */
-  top: 0.5rem;     /* top-2 */
+  right: 0.5rem; /* right-2 */
+  top: 0.5rem; /* top-2 */
   padding: 0.5rem; /* p-2 */
   border-radius: 0.375rem; /* rounded-md */
   background-color: #e5e5e5; /* bg-neutral-200 */
@@ -34,12 +46,10 @@
 
 /* ------------------------------------------------------------------------- */
 
-
-*{
+* {
   font-family: "Roboto", sans-serif;
   font-optical-sizing: auto;
 }
-
 
 /* For Tailwind custom class */
 .no-scrollbar::-webkit-scrollbar {

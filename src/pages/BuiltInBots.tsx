@@ -39,6 +39,7 @@ const BuiltInBots: React.FC = () => {
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="pr-10 shadow-none"
+            aria-label="search bots"
           />
           <span className="absolute right-2 top-1/2 -translate-y-1/2 text-sm text-neutral-400 pointer-events-none flex items-center gap-1">
             <Command size={12} /> K

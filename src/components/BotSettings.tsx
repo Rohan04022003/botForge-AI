@@ -26,6 +26,7 @@ export function BotSettings() {
         <Dialog open={isOpenBotForm} onOpenChange={setIsOpenBotForm}>
             <DialogTrigger asChild>
                 <Button
+                aria-label="go to bot settings page"
                     variant="outline"
                     size="sm"
                     className={`backdrop-blur-[10px] bg-transparent py-4 shadow-none ${location.pathname.includes("chatting-page")

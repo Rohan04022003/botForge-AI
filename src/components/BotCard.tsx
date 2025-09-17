@@ -33,7 +33,7 @@ const BotCard: React.FC<BotCardProp> = ({ bot }) => {
         </div>
 
         {/* yaha se hum navigation ka use kar ke chatting page pe jayenge */}
-        <button onClick={() => navigate(`/chatting-page/${bot.id}`)} className="mt-4 w-full text-sm bg-gradient-to-r from-red-600 via-blue-500 to-sky-400 text-white py-1.5 rounded-md transition-all flex items-center justify-center gap-1 cursor-pointer">
+        <button aria-label="go to chat page" onClick={() => navigate(`/chatting-page/${bot.id}`)} className="mt-4 w-full text-sm bg-gradient-to-r from-red-600 via-blue-500 to-sky-400 text-white py-1.5 rounded-md transition-all flex items-center justify-center gap-1 cursor-pointer">
           <Sparkles size={16} /> Chat Now
         </button>
       </div>

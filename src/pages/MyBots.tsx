@@ -34,6 +34,7 @@ const MyBots: React.FC = () => {
         <h1 className="text-xl font-semibold text-neutral-800 dark:text-neutral-100">My Bots</h1>
         <div className="relative md:w-64 w-56">
           <Input
+          aria-label="search bots"
             ref={searchInputRef}
             placeholder="Search bots..."
             value={searchTerm}

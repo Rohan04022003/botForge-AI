@@ -92,7 +92,7 @@ const ChatInterface = () => {
             {showGreeting && currentBot?.greetings && (
               <div className="w-full flex flex-col justify-center items-center gap-1 h-[65vh]">
                 <div className="flex items-center gap-2">
-                  <img src={logo} className="w-6" />
+                  <img src={logo} className="w-6" alt="logo"/>
                   <p className="text-[1.5rem] text-neutral-500">
                     {currentBot.name}
                   </p>
@@ -150,6 +150,7 @@ const ChatInterface = () => {
       <div className="w-full flex justify-center sticky bottom-0 pt-1 pb-2 bg-background z-10">
         <div className="lg:w-2/3 w-full bg-secondary rounded-xl flex flex-col p-3 gap-3 backdrop-blur-md">
           <textarea
+          aria-label="here user can type there quary"
             placeholder="Type or Speak I'm listening..."
             className="flex-1 resize-none min-h-[60px] bg-transparent outline-none dark:text-white placeholder-neutral-500"
             value={message}
@@ -208,6 +209,7 @@ const ChatInterface = () => {
               <VoiceInput setMessage={setMessage} />
 
               <Button
+              aria-label="handle send button for user quary"
                 onClick={() => { handleSend(); setListening(false) }}
                 disabled={!message}
                 className={`w-8 h-8 rounded-full ${message

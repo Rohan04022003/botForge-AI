@@ -119,6 +119,7 @@ const Hero: React.FC<HeroProps> = ({ activeView, setActiveView, search, setSearc
                         {activeView === "BotForge AI" ? (
                             <>
                                 <textarea
+                                aria-label="user message"
                                     value={message}
                                     onChange={(e) => setMessage(e.target.value)}
                                     placeholder={getPlaceholder(activeView)}
@@ -159,6 +160,7 @@ const Hero: React.FC<HeroProps> = ({ activeView, setActiveView, search, setSearc
                                         <VoiceInput setMessage={setMessage} />
 
                                         <Button
+                                        aria-label="send user query"
                                             onClick={() => {handleSend(); setListening(false)}}
                                             disabled={!message}
                                             className={`w-8 h-8 rounded-full ${message ? "bg-blue-500 hover:bg-blue-400" : "border border-neutral-600 bg-transparent"}`}
@@ -172,6 +174,7 @@ const Hero: React.FC<HeroProps> = ({ activeView, setActiveView, search, setSearc
                             <div className="flex items-center px-2">
                                 <Search size={18} className="text-gray-500" />
                                 <input
+                                aria-label="search bot"
                                     value={search}
                                     onChange={(e) => setSearch(e.target.value)}
                                     placeholder={getPlaceholder(activeView)}

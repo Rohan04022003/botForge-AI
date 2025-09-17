@@ -1,22 +1,56 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/src/assets/logo.svg" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- Favicon -->
+    <link rel="icon" href="/src/assets/logo.svg" type="image/svg+xml" />
+    <link rel="alternate icon" href="/src/assets/favicon.ico" type="image/x-icon" />
+
+    <!-- Viewport -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Title & Description -->
     <title>BotForge AI Chatbot</title>
-    <meta name="description" content="BotForge AI Chatbot: Chat with multiple AI models, manage bots, and export conversations. Modern, responsive, and extensible web app." />
+    <meta
+      name="description"
+      content="BotForge AI Chatbot: Chat with multiple AI models, manage bots, and export conversations. Modern, responsive, and extensible web app."
+    />
+
+    <!-- Open Graph -->
     <meta property="og:title" content="BotForge AI Chatbot" />
-    <meta property="og:description" content="Chat with multiple AI models, manage bots, and export conversations. Modern, responsive, and extensible web app." />
+    <meta
+      property="og:description"
+      content="Chat with multiple AI models, manage bots, and export conversations. Modern, responsive, and extensible web app."
+    />
     <meta property="og:image" content="/src/assets/logo.svg" />
     <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://botforge-ai.vercel.app/" />
+
+    <!-- Theme Color -->
     <meta name="theme-color" content="#2886FF" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cedarville+Cursive&family=Manrope:wght@200..800&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <!-- Performance Optimizations -->
+    <!-- Preload Fonts -->
+    <link
+      rel="preload"
+      href="/src/assets/fonts/poppins-v23-latin-regular.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+
+    <!-- Preload Important Assets -->
+    <link rel="preload" href="/src/assets/logo.svg" as="image" type="image/svg+xml" />
+    <link rel="preload" href="/src/assets/logo.svg" as="image" type="image/png" />
+
+
   </head>
   <body>
     <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+
+    <!-- Defer Main Script -->
+    <script type="module" src="/src/main.tsx" defer></script>
   </body>
 </html>

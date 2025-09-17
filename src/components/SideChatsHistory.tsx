@@ -26,6 +26,7 @@ const SideChatsHistory: React.FC<{ botID?: string }> = ({ botID }) => {
       <div className="flex items-center justify-between">
         <h2 className="sticky top-0 dark:bg-[#171717] bg-[#FAFAFA] py-1 w-full text-sm font-semibold text-neutral-600 dark:text-neutral-300 z-20">Chats</h2>
         <Button
+        aria-label="for export chat to pdf"
           size={"sm"}
           onClick={() =>
             foundBot?.chatHistory &&
@@ -68,6 +69,7 @@ const SideChatsHistory: React.FC<{ botID?: string }> = ({ botID }) => {
                   >
                     {entry.title.slice(0, 30) + (entry.title.length > 25 ? "..." : "")}
                     <button
+                    aria-label="for deleting chat"
                       onClick={(e) => {
                         e.stopPropagation();
                         deleteChat(botID, entry.id);
@@ -81,7 +83,7 @@ const SideChatsHistory: React.FC<{ botID?: string }> = ({ botID }) => {
             </div>
           ))
       ) : (
-        <p className="text-neutral-400 italic text-sm mt-2">No chat history found.</p>
+        <p aria-label="when chats not found" className="text-neutral-400 italic text-sm mt-2">No chat history found.</p>
       )}
 
     </div>

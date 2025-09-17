@@ -52,7 +52,7 @@ const AboutUs = () => {
       <section>
         <h2 className="text-xl font-semibold text-neutral-900 dark:text-neutral-100 mb-2">Learning Resources</h2>
         <p className="leading-relaxed">
-          If you're new here, don’t worry. I’ve included a complete <Link to="/bot-creation-guide" className="underline text-primary">Bot Creation Guide</Link> to walk you through every step — from naming your bot to defining its purpose and behavior.
+          If you're new here, don’t worry. I’ve included a complete <Link to="/bot-creation-guide" className="underline text-primary" aria-label="Go to Bot Creation Guide">Bot Creation Guide</Link> to walk you through every step — from naming your bot to defining its purpose and behavior.
         </p>
       </section>
 
@@ -62,7 +62,7 @@ const AboutUs = () => {
       <section>
         <h2 className="text-xl font-semibold text-neutral-900 dark:text-neutral-100 mb-2">Get Started Now</h2>
         <p className="leading-relaxed">
-          Excited to build your first bot? Head over to the <Link to="/create-bot" className="underline text-primary">Create Bot</Link> page and start crafting your own AI assistant. Whether you want to make something fun, helpful, or productivity-boosting, BotForge AI gives you the tools to do it.
+          Excited to build your first bot? Head over to the <Link to="/create-bot" className="underline text-primary" aria-label="Go to Create Bot page">Create Bot</Link> page and start crafting your own AI assistant. Whether you want to make something fun, helpful, or productivity-boosting, BotForge AI gives you the tools to do it.
         </p>
       </section>
     </div>

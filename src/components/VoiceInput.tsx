@@ -23,7 +23,7 @@ export const VoiceInput: React.FC<VoiceInputProps> = ({ setMessage }) => {
   const recognitionRef = useRef<SpeechRecognition | null>(null);
   const finalTranscriptRef = useRef<string>("");
 
-  const {theme} = useTheme();
+  const { theme } = useTheme();
 
   const { listening, setListening } = useBotContext();
 
@@ -55,7 +55,7 @@ export const VoiceInput: React.FC<VoiceInputProps> = ({ setMessage }) => {
         }
       }
 
-      // 📝 Show both final + interim in input
+      // Show both final + interim in input
       setMessage(finalTranscriptRef.current + interimTranscript);
     };
 
@@ -84,11 +84,12 @@ export const VoiceInput: React.FC<VoiceInputProps> = ({ setMessage }) => {
 
   return (
     <div
+      aria-label="this is for voice command"
       onClick={toggleListening}
       className={`w-8 h-8 rounded-full border ${listening ? "bg-red-500 border-none animate-pulse" : "bg-transparent border-2 dark:border-neutral-700 border-[#408BFF]"
         } flex justify-center items-center cursor-pointer transition `}
     >
-      <Mic size={16} color={listening ? "white" : theme === "dark" ? "gray" : "#408BFF" } />
+      <Mic size={16} color={listening ? "white" : theme === "dark" ? "gray" : "#408BFF"} />
     </div>
   );
 };

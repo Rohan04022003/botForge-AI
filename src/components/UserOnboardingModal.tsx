@@ -31,6 +31,7 @@ const UserOnboardingModal = () => {
                     <div className="space-y-2">
                         <Label htmlFor="name">Your Name</Label>
                         <Input
+                        aria-label="user name"
                             id="name"
                             type="text"
                             placeholder="Enter your name"
@@ -43,6 +44,7 @@ const UserOnboardingModal = () => {
                     <div className="space-y-2">
                         <Label htmlFor="name">Email</Label>
                         <Input
+                        aria-label="user email"
                             id="name"
                             type="email"
                             placeholder="Enter your Email."
@@ -68,6 +70,7 @@ const UserOnboardingModal = () => {
 
                     {/* Submit Button */}
                     <Button
+                    aria-label="user submit"
                         onClick={handleSubmit}
                         className="w-full mt-2"
                         disabled={!name.trim() || !email.trim() || !gender}

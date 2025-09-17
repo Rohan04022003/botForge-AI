@@ -17,31 +17,27 @@ const Settings = () => {
   const [resetChatEmail, setResetChatEmail] = useState("");
 
   // bot context se resetBots liya hai
-
   const { resetBots, resetAllChats } = useBotContext();
 
   // user context se deleteUser liya hai
+  const { deleteUser, user, setUser } = useUser();
 
-  const { deleteUser } = useUser();
-
-  //page navigation
-
+  // page navigation
   const navigate = useNavigate();
 
   // dark and light mode toggle ke liye useState
   const { setTheme, theme } = useTheme();
 
   // user profile update
-
   const [showProfileForm, setShowPofileForm] = useState(false);
-  const { user, setUser } = useUser();
   const [name, setName] = useState("");
   const [gender, setGender] = useState("");
   const [email, setEmail] = useState("");
 
-  // yaha pe usreData ke help se avatarList ko fetch kr rhe hai.
+  // yaha pe userData ke help se avatarList ko fetch kr rhe hai.
   const presentUser = avatarList.filter((avatar) => avatar.gender.toLowerCase() === user?.gender)
 
+  // handle profile submit
   const handleSubmit = () => {
     if (!name.trim() || !gender || !email.trim()) return;
     setUser({ name: name.trim(), email: email.trim(), gender });
@@ -56,7 +52,6 @@ const Settings = () => {
   }, [showProfileForm, user])
 
   // ------------------------------------------
-
   // Delete user ka function
   const deleteAccount = () => {
     resetBots();
@@ -65,28 +60,42 @@ const Settings = () => {
 
   return (
     <div className="lg:w-2/3 mx-auto py-10 space-y-6">
+
       {/* User Profile */}
       <Card className="shadow-none">
         <CardHeader className="flex flex-row items-center justify-between">
           <div>
             <CardTitle className="text-lg">User Profile</CardTitle>
           </div>
-          <Button onClick={() => setShowPofileForm(true)} variant="outline" size="sm" className={`shadow-none ${showProfileForm ? "hidden" : "flex"}`}>
+          <Button 
+            onClick={() => setShowPofileForm(true)} 
+            variant="outline" 
+            size="sm" 
+            className={`shadow-none ${showProfileForm ? "hidden" : "flex"}`}
+            aria-label="Update Profile"
+          >
             Update Profile
           </Button>
         </CardHeader>
+
         {!showProfileForm ?
 
           <CardContent className="flex items-center gap-4">
+            {/* Avatar with accessibility */}
             <Avatar className="w-16 h-16">
-              <AvatarImage src="/user.png" alt="User" />
-              <AvatarFallback><img src={presentUser[0]?.avatar} alt="" /></AvatarFallback>
+              <AvatarImage src="/user.png" alt="User Avatar" />
+              <AvatarFallback>
+                <img src={presentUser[0]?.avatar} alt="Fallback Avatar" />
+              </AvatarFallback>
             </Avatar>
+
+            {/* User info */}
             <div>
               <p className="text-base font-medium">{user?.name}</p>
               <p className="text-sm text-muted-foreground">{user?.email}</p>
             </div>
           </CardContent>
+
           :
 
           // user profile data update krne ke liye form 
@@ -105,10 +114,11 @@ const Settings = () => {
                 />
               </div>
 
+              {/* Email Input */}
               <div className="space-y-2">
-                <Label htmlFor="name">Email</Label>
+                <Label htmlFor="email">Email</Label>
                 <Input
-                  id="name"
+                  id="email"
                   type="email"
                   placeholder="Enter your Email."
                   value={email}
@@ -119,7 +129,7 @@ const Settings = () => {
               {/* Gender Select */}
               <div className="space-y-2">
                 <Label htmlFor="gender">Gender</Label>
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-4" role="radiogroup" aria-label="Select Gender">
                   <label className="flex items-center gap-2 cursor-pointer">
                     <input
                       type="radio"
@@ -164,6 +174,7 @@ const Settings = () => {
                   onClick={() => (handleSubmit(), setShowPofileForm(false))}
                   className="mt-2"
                   disabled={!name.trim() || !email.trim() || !gender || (name === user?.name && email === user.email && gender === user.gender)}
+                  aria-label="Update Profile Information"
                 >
                   Update
                 </Button>
@@ -172,6 +183,7 @@ const Settings = () => {
                   className="mt-2"
                   disabled={!name.trim() || !email.trim() || !gender}
                   variant={"destructive"}
+                  aria-label="Cancel Profile Update"
                 >
                   Cancel
                 </Button>
@@ -183,7 +195,7 @@ const Settings = () => {
 
       <Separator />
 
-      {/* Appearance Settings hai */}
+      {/* Appearance Settings */}
       <Card className="shadow-none">
         <CardHeader>
           <CardTitle>Appearance</CardTitle>
@@ -196,13 +208,13 @@ const Settings = () => {
               checked={theme === "dark"}
               onCheckedChange={(checked) => setTheme(checked ? "dark" : "light")}
               className="cursor-pointer"
+              aria-label="Toggle Dark Mode"
             />
-
           </div>
         </CardContent>
       </Card>
 
-      {/* Bot Data Reset Section hai */}
+      {/* Bot Data Reset Section */}
       <Card className="border-blue-500 shadow-none">
         <CardHeader>
           <CardTitle className="text-blue-600">Reset Bot Chats / All Data</CardTitle>
@@ -217,19 +229,21 @@ const Settings = () => {
             placeholder="Enter your email to proceed"
             value={resetChatEmail}
             onChange={(e) => setResetChatEmail(e.target.value)}
+            aria-label="Enter your email to reset bot chats"
           />
           <Button
             onClick={() => (resetAllChats(), setResetChatEmail(""))}
             className="shadow-none"
             variant="outline"
             disabled={resetChatEmail !== user?.email}
+            aria-label="Reset All Bot Chats"
           >
             Reset All Bot Chats
           </Button>
         </CardContent>
       </Card>
 
-      {/* Danger Zone means account deletion ka code hai yaha pe */}
+      {/* Danger Zone (account deletion) */}
       <Card className="border-red-500 shadow-none">
         <CardHeader>
           <CardTitle className="text-red-600">Danger Zone</CardTitle>
@@ -244,12 +258,14 @@ const Settings = () => {
             placeholder="Enter your email to confirm"
             value={deleteEmail}
             onChange={(e) => setDeleteEmail(e.target.value)}
+            aria-label="Enter your email to delete account"
           />
           <Button
             className="shadow-none"
             variant="destructive"
             disabled={deleteEmail !== user?.email}
             onClick={() => (deleteAccount(), navigate("/"), setDeleteEmail(""))}
+            aria-label="Delete Account permanently"
           >
             Delete Account
           </Button>

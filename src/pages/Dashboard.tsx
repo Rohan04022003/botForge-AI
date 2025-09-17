@@ -7,7 +7,6 @@ import { ArrowRight, Bot } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-
 const Dashboard = () => {
 
   const { bots } = useBotContext();
@@ -47,52 +46,66 @@ const Dashboard = () => {
     }
   }, [activeView, bots, searchInputs]);
 
-
   return (
     <div className="mb-14">
       {/* Yaha pe hamne hero commponent ko mount kiya hai jisme ai search and bots filter buttons hai  */}
       <Hero activeView={activeView} setActiveView={setActiveView} search={searchInputs} setSearch={setSearchInputs} />
 
       {/* Agar bots nhi milenge toh yeh display hoga aur create button pe click krte hi bot create form pe le jayega  */}
-
       {filteredBots.builtInBots.length === 0 && filteredBots.userCreatedBots.length === 0 && (
         <div className="flex flex-col items-center justify-center text-center py-20 text-muted-foreground">
-          <Bot className="w-12 h-12 mb-4 text-primary" />
+          <Bot className="w-12 h-12 mb-4 text-primary" role="img" aria-label="Bot icon" />
           <p className="text-lg font-medium">No bots found</p>
           <p className="text-sm mb-4">We couldn’t find any bots matching “{searchInputs.trim()}”.</p>
           <Link to={`/create-bot?botName=${encodeURIComponent(searchInputs.trim())}`}>
-            <Button variant={"outline"} className="bg-background text-black dark:text-white">
+            <Button 
+              variant={"outline"} 
+              className="bg-background text-black dark:text-white"
+              aria-label={`Create bot named ${searchInputs.trim()}`}
+            >
               Create “{searchInputs.trim()}”
             </Button>
           </Link>
         </div>
       )}
 
-
       {/* Yaha pe user created bots ko show kiya hai. */}
-
       <div className="w-full flex justify-between items-center">
         <h2 className={`py-6 text-2xl font-semibold ${filteredBots.userCreatedBots.length > 0 ? 'block' : 'hidden'}`}>Your Bots</h2>
-        <Button onClick={() => navigate('/my-bots')} variant={"outline"} size={"icon"} className={`shadow-none rounded-full ${filteredBots.userCreatedBots.length > 4 ? "flex" : "hidden"}`}><ArrowRight /></Button>
+        <Button 
+          onClick={() => navigate('/my-bots')} 
+          variant={"outline"} 
+          size={"icon"} 
+          className={`shadow-none rounded-full ${filteredBots.userCreatedBots.length > 4 ? "flex" : "hidden"}`}
+          aria-label="Go to My Bots"
+        >
+          <ArrowRight />
+        </Button>
       </div>
       <div className="grid gap-3 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-        {filteredBots.userCreatedBots.length > 0 && filteredBots.userCreatedBots.slice(0, 8).map((bot, index) => (
-          <BotCard key={index} bot={bot} />
+        {filteredBots.userCreatedBots.length > 0 && filteredBots.userCreatedBots.slice(0, 8).map((bot) => (
+          <BotCard key={bot.id} bot={bot} />
         ))}
       </div>
 
+      {/* Built In Bots section */}
       <div className="w-full flex justify-between items-center">
         <h2 className={`py-6 text-2xl font-semibold ${filteredBots.builtInBots.length > 0 ? 'block' : 'hidden'}`}>Built In Bots</h2>
-        <Button onClick={() => navigate('/built-in')} variant={"outline"} size={"icon"} className={`shadow-none rounded-full ${filteredBots.builtInBots.length > 4 ? "flex" : "hidden"}`}><ArrowRight /></Button>
+        <Button 
+          onClick={() => navigate('/built-in')} 
+          variant={"outline"} 
+          size={"icon"} 
+          className={`shadow-none rounded-full ${filteredBots.builtInBots.length > 4 ? "flex" : "hidden"}`}
+          aria-label="Go to Built-in Bots"
+        >
+          <ArrowRight />
+        </Button>
       </div>
       <div className="grid gap-3 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {filteredBots.builtInBots.slice(0, 8).map((bot) => (
           <BotCard key={bot.id} bot={bot} />
         ))}
       </div>
-
-
-
     </div>
   )
 }

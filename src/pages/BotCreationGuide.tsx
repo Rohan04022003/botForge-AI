@@ -131,7 +131,7 @@ const BotCreationGuide = () => {
 
       {/* CTA */}
       <div className="text-center">
-        <Button onClick={() => navigate("/create-bot")} className="mt-4">
+        <Button onClick={() => navigate("/create-bot")} className="mt-4" aria-label="go to create bot page">
           Go to Create Bot Page
         </Button>
       </div>
