@@ -166,7 +166,7 @@ const ChatInterface = () => {
             <div className="flex items-center gap-2">
               <span className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-300">
                 <img src={logo} alt="botforge-ai" className="w-4" />
-                <span className="text-[.8rem]">{currentBot?.name}</span>
+                <span aria-label={`${currentBot?.name}`} className="text-[.8rem]">{currentBot?.name}</span>
               </span>
               <Minus className="w-4 h-6 rotate-90" />
               <div className="relative">
@@ -176,13 +176,13 @@ const ChatInterface = () => {
                     handleModelChange(newModel, currentBot?.id)
                   }
                 >
-                  <SelectTrigger className="flex items-center gap-2 md:px-2 md:py-1 p-2 border md:rounded-sm rounded-full outline-none cursor-pointer">
+                  <SelectTrigger aria-label="bot seletion" className="flex items-center gap-2 md:px-2 md:py-1 p-2 border md:rounded-sm rounded-full outline-none cursor-pointer">
                     <img
                       src={modelOptions.find((m) => m.value === model)?.icon}
                       alt={model}
                       className="w-3"
                     />
-                    <span className="text-[.7rem]">
+                    <span aria-label="model name" className="text-[.7rem]">
                       {model.charAt(0).toUpperCase() + model.slice(1)}
                     </span>
                     <ChevronDown size={10} className="mt-[.1rem]" />
@@ -190,6 +190,7 @@ const ChatInterface = () => {
                   <SelectContent className="bg-background px-1 py-2 rounded-md cursor-pointer fixed left-[15%] top-[20%]">
                     {modelOptions.map(({ label, value, icon }) => (
                       <SelectItem
+                      aria-label={`bot name ${value}`}
                         key={value}
                         value={value}
                         className={`flex items-center gap-2 text-[.7rem] px-4 py-1 hover:bg-secondary border-none outline-none rounded-md ${currentBot?.model === value ? "bg-secondary" : ""

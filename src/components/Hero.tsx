@@ -101,7 +101,7 @@ const Hero: React.FC<HeroProps> = ({ activeView, setActiveView, search, setSearc
                             }`}
                     >
                         {btn.badge && (
-                            <span className="bg-blue-500 text-white rounded-[4px] px-2 py-[.1rem] text-[.5rem] -top-2 -right-1 absolute">
+                            <span className="bg-blue-700 text-white rounded-[4px] px-2 py-[.1rem] text-[.6rem] -top-3 -right-1 absolute">
                                 {btn.badge}
                             </span>
                         )}
@@ -127,14 +127,14 @@ const Hero: React.FC<HeroProps> = ({ activeView, setActiveView, search, setSearc
                                 />
                                 <div className="flex justify-between items-center mt-2">
                                     <div className="flex items-center gap-2 text-sm">
-                                        <img src={logo} alt="botforge" className="w-4" />
-                                        <span className="text-gray-500">BotForge</span>
+                                        <img src={logo} alt="botforge ai logo" className="w-4" />
+                                        <span className="dark:text-neutral-400 text-neutral-600">BotForge</span>
                                         <Minus size={20} className="rotate-90" />
                                         <Select value={model} onValueChange={handleModelChange}>
-                                            <SelectTrigger className="flex items-center gap-2 px-2 py-1 border rounded-sm outline-none cursor-pointer">
+                                            <SelectTrigger aria-label="model seletion" className="flex items-center gap-2 px-2 py-1 border rounded-sm outline-none cursor-pointer">
                                                 <img
                                                     src={modelOptions.find((m) => m.value === model)?.icon}
-                                                    alt={model}
+                                                    alt=""
                                                     className="w-4"
                                                 />
                                                 <span>{model.charAt(0).toUpperCase() + model.slice(1)}</span>

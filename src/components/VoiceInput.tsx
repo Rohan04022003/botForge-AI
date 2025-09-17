@@ -84,7 +84,8 @@ export const VoiceInput: React.FC<VoiceInputProps> = ({ setMessage }) => {
 
   return (
     <div
-      aria-label="this is for voice command"
+    role="button"
+    aria-label="Activate voice command"
       onClick={toggleListening}
       className={`w-8 h-8 rounded-full border ${listening ? "bg-red-500 border-none animate-pulse" : "bg-transparent border-2 dark:border-neutral-700 border-[#408BFF]"
         } flex justify-center items-center cursor-pointer transition `}

@@ -44,14 +44,16 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
-            <Button className="bg-transparent text-primary shadow-none hover:bg-transparent flex items-center justify-start px-1">
-              <Link to="/" onClick={handleNavClick}>
-                <div className="flex items-center gap-2 leading-none">
-                  <img src={logo} alt="botforge" className="w-7" />
-                  <span className="font-medium text-lg">BotForge</span>
-                </div>
-              </Link>
-            </Button>
+            <Link
+              aria-label="this is botforge main logo"
+              to="/"
+              onClick={handleNavClick}
+              className="bg-transparent text-primary shadow-none hover:bg-transparent flex items-center justify-start gap-1 px-1"
+            >
+              <img src={logo} alt="BotForge AI" className="w-7" />
+              <span className="font-medium text-lg">BotForge</span>
+            </Link>
+
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
@@ -75,15 +77,15 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarContent>
 
 
-      <div onClick={() => { navigate("/settings"); handleNavClick(); }} className="user-info h-16 rounded-b-md flex justify-between items-center gap-2 p-1 bg-secondary cursor-pointer">
+      <div aria-label="go to user profile" onClick={() => { navigate("/settings"); handleNavClick(); }} className="user-info h-16 rounded-b-md flex justify-between items-center gap-2 p-1 bg-secondary cursor-pointer">
         <div className="user-icon rounded-full flex items-center gap-2">
           <img src={presentUser[0]?.avatar} alt="user-avtar" className="w-10 rounded-full" />
           <div className="flex flex-col gap-[1px]">
             <span className="text-sm">{user?.name}</span>
-            <span className="text-[.7rem] text-neutral-500">{user?.email.slice(0,22)+"..."}</span>
+            <span className="text-[.7rem] dark:text-neutral-400 text-neutral-700">{user?.email.slice(0, 22) + "..."}</span>
           </div>
         </div>
-        <Button variant={"outline"} className="user-name cursor-pointer bg-transparent dark:bg-transparent shadow-none border-none">
+        <Button aria-label="go to user profile settings" variant={"outline"} className="user-name cursor-pointer bg-transparent dark:bg-transparent shadow-none border-none">
           <MoreVertical color="gray" size={18} />
         </Button>
       </div>
