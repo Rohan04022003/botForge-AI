@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useUser } from "@/context/UserContext";
 import { useEffect, useState } from "react";
 

@@ -8,12 +8,12 @@ import { useBotContext } from "@/context/BotContext";
 import { BotSettings } from "./BotSettings";
 
 const Header = () => {
-    const { theme, setTheme } = useTheme();
-    const location = useLocation();
-    const navigate = useNavigate();
-    const { setBotResponse, setUserMessage } = useBotContext();
+    const { theme, setTheme } = useTheme(); // yaha se hum theme use and set kr rhe hai.
+    const location = useLocation(); // location get kr rhe hai.
+    const navigate = useNavigate(); // page navigation ke liye.
+    const { setBotResponse, setUserMessage } = useBotContext(); // yaha se user message and bot response ko le rhe hai.
 
-    const setNewPage = () => {
+    const setNewPage = () => { // when click on new page tb bot response and user message ko empty kr denge.
         setBotResponse("");
         setUserMessage("");
     };
@@ -37,7 +37,7 @@ const Header = () => {
                 <div className="flex items-center">
                     {/* Theme toggle ke liye */}
                     <Button
-                    aria-label="theme switcher button"
+                        aria-label="theme switcher button"
                         onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
                         variant="outline"
                         size="icon"
