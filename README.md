@@ -1,5 +1,9 @@
 # BotForge AI 🤖
 
+**Original Project by [Rohan Kumar Mahto](https://github.com/Rohan04022003)**  
+This repository is intended for learning, demonstration, and personal projects.  
+Commercial use or claiming authorship is strictly prohibited.
+
 [Live Demo](https://bot-forge-ai.vercel.app/) | [GitHub Repository](https://github.com/Rohan04022003/botForge-AI)
 
 ## 🚀 Overview
