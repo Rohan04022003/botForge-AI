@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import type { UserContextType, UserData } from "@/types/userTypes";
 import { createContext, useContext, useEffect, useState } from "react";
 

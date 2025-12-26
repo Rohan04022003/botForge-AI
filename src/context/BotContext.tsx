@@ -15,7 +15,7 @@ export const BotProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const [title, setTitle] = useState<string>("");
   const [userMessage, setUserMessage] = useState<string>("");
   const [botResponse, setBotResponse] = useState<string>("");
-    const [listening, setListening] = useState<boolean>(false); // yeh voice listening active hai ya nahi uske liye hai.
+  const [listening, setListening] = useState<boolean>(false); // yeh voice listening active hai ya nahi uske liye hai.
 
   // Load from localStorage or fallback
   useEffect(() => {
@@ -48,7 +48,6 @@ export const BotProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   };
 
   //BotForge AI model selection method
-
   const saveBotModel = (modelValue: string, botId: string) => {
 
     const updateBot = (bot: Bot) =>
@@ -68,7 +67,6 @@ export const BotProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   };
 
   // Bot update chat methods
-
   const updateChat = (botId: string, chatEntry: ChatEntry) => {
     const date = new Date();
     const today = date.toLocaleDateString("en-GB", {
@@ -96,7 +94,6 @@ export const BotProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   };
 
   //chat selection ke liye jb chat select krenge toh uske ander ka data show hoga means userMessage and botResponse
-
   const selectChat = (botId: string | undefined, chatID: string) => {
     const allBots = [...bots.builtInBots, ...bots.userCreatedBots];
     const foundBot = allBots.find(bot => bot.id === botId);
@@ -118,7 +115,6 @@ export const BotProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   };
 
   // yeh chat ko delete krne ka function hai
-
   const deleteChat = (botId: string | undefined, chatID: string) => {
     if (!botId || !chatID) return;
 
@@ -137,7 +133,6 @@ export const BotProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     }
 
     //bot ko update krne ka functionality
-
     const updateBot = (bot: Bot): Bot => {
       if (bot.id !== botId || !bot.chatHistory) return bot;
 
@@ -165,7 +160,6 @@ export const BotProvider: React.FC<{ children: React.ReactNode }> = ({ children 
 
 
   // all chats reset krne ka methods
-
   const resetAllChats = () => {
     const resetBotChats = (bot: Bot) => ({ ...bot, chatHistory: {} });
 
@@ -178,7 +172,6 @@ export const BotProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   };
 
   // New Bot add krne ka methods or userCreated bot add krne ka methods
-
   const addBot = (
     botName: string,
     greeting: string,
@@ -210,7 +203,6 @@ export const BotProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   };
 
   // existing bot ko edit krne ka method
-
   const editBot = (
     botId: string,
     botName: string,
@@ -233,6 +225,7 @@ export const BotProvider: React.FC<{ children: React.ReactNode }> = ({ children 
 
   };
 
+  // bot deletion method
   const deleteBot = (botId: string) => {
 
     const updated = {
@@ -244,6 +237,7 @@ export const BotProvider: React.FC<{ children: React.ReactNode }> = ({ children 
 
   }
 
+  // reset bots methods
   const resetBots = () => {
     setBots(data);
     localStorage.setItem("ai-bots", JSON.stringify(data));
