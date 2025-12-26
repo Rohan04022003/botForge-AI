@@ -11,7 +11,7 @@ const SideChatsHistory: React.FC<{ botID?: string }> = ({ botID }) => {
   // navbar open close ke liye hai shadcn built in feature hai
   const { isMobile, setOpenMobile } = useSidebar();
 
-  const handleNavClick = () => {
+  const handleNavClick = () => { // mobile view ke liye hai.
     if (isMobile) setOpenMobile(false);
   };
 
@@ -19,7 +19,7 @@ const SideChatsHistory: React.FC<{ botID?: string }> = ({ botID }) => {
     botID && bots
       ? bots.builtInBots.find((bot) => bot.id === botID) ||
       bots.userCreatedBots.find((bot) => bot.id === botID)
-      : undefined;
+      : undefined; // yaha pe bot ko identify kr rhe hai. agar present hai toh history check kro.
 
   return (
     <div className={`h-full mb-1 px-3 relative ${botID ? "block" : "hidden"}`}>

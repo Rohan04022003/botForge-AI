@@ -30,7 +30,7 @@ import { VoiceInput } from "./VoiceInput";
 const Hero: React.FC<HeroProps> = ({ activeView, setActiveView, search, setSearch }) => {
     const [message, setMessage] = useState("")
 
-    const navigate = useNavigate();
+    const navigate = useNavigate(); // navigation ke liye.
     const {
         setUserMessage,
         setModel,
@@ -43,14 +43,14 @@ const Hero: React.FC<HeroProps> = ({ activeView, setActiveView, search, setSearc
         setLoading,
         updateChat,
         setListening
-    } = useBotContext();
+    } = useBotContext(); // bot ke sare configs ko le rhe hai aur use kr rhe hai.
 
     useEffect(() => {
         setUserMessage(message);
-    }, [message, setUserMessage]);
+    }, [message, setUserMessage]); //yaha pe user message set kr rhe hai.
 
     useEffect(() => {
-        if (bots.builtInBots.length > 0) {
+        if (bots.builtInBots.length > 0) { // yaha pe jo hamara botforge main ai hai uske model ho set kr rhe hai aur role ko bhi.
             setModel(bots.builtInBots[0].model);
             setBotRole(bots.builtInBots[0].role);
         }
@@ -62,7 +62,7 @@ const Hero: React.FC<HeroProps> = ({ activeView, setActiveView, search, setSearc
         { label: "Your Bots", icon: <BotIcon className="w-4 h-4" /> },
     ];
 
-    const handleSend = () => {
+    const handleSend = () => { // yaha se botforge ai ke data ko handle kr rhe hai.
         handleSendMessage({
             message,
             model,
@@ -77,7 +77,7 @@ const Hero: React.FC<HeroProps> = ({ activeView, setActiveView, search, setSearc
         navigate("chatting-page/0");
     };
 
-    const handleModelChange = (newModel: string, id: string = "0") => {
+    const handleModelChange = (newModel: string, id: string = "0") => { // yaha se botforge ke model ko access or change kr rhe hai.
         setModel(newModel);
         saveBotModel(newModel, id);
     };
@@ -119,7 +119,7 @@ const Hero: React.FC<HeroProps> = ({ activeView, setActiveView, search, setSearc
                         {activeView === "BotForge AI" ? (
                             <>
                                 <textarea
-                                aria-label="user message"
+                                    aria-label="user message"
                                     value={message}
                                     onChange={(e) => setMessage(e.target.value)}
                                     placeholder={getPlaceholder(activeView)}
@@ -160,8 +160,8 @@ const Hero: React.FC<HeroProps> = ({ activeView, setActiveView, search, setSearc
                                         <VoiceInput setMessage={setMessage} />
 
                                         <Button
-                                        aria-label="send user query"
-                                            onClick={() => {handleSend(); setListening(false)}}
+                                            aria-label="send user query"
+                                            onClick={() => { handleSend(); setListening(false) }}
                                             disabled={!message}
                                             className={`w-8 h-8 rounded-full ${message ? "bg-blue-500 hover:bg-blue-400" : "border border-neutral-600 bg-transparent"}`}
                                         >
@@ -174,7 +174,7 @@ const Hero: React.FC<HeroProps> = ({ activeView, setActiveView, search, setSearc
                             <div className="flex items-center px-2">
                                 <Search size={18} className="text-gray-500" />
                                 <input
-                                aria-label="search bot"
+                                    aria-label="search bot"
                                     value={search}
                                     onChange={(e) => setSearch(e.target.value)}
                                     placeholder={getPlaceholder(activeView)}
