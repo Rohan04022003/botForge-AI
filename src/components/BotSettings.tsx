@@ -13,20 +13,20 @@ import { useState } from "react";
 
 export function BotSettings() {
 
-    const [isOpenBotForm, setIsOpenBotForm] = useState(false);
+    const [isOpenBotForm, setIsOpenBotForm] = useState(false); // yaha pe check kr rhe hai ki bot settings section open hai ya close.
 
-    const location = useLocation();
-    const { botID } = useParams<{ botID: string }>();
+    const location = useLocation(); // yaha pe page ka location get kr rhe hai.
+    const { botID } = useParams<{ botID: string }>(); // yaha pe botId le rhe hai from params.
 
-    const { bots } = useBotContext();
+    const { bots } = useBotContext(); // yaha se hum unn sare bots ko le rhe hai.
 
-    const builtInBotData = bots.builtInBots.find((bot) => bot.id === botID)
+    const builtInBotData = bots.builtInBots.find((bot) => bot.id === botID) // yaha pe hum specific bot ko choose kr rhe hai.
 
     return (
         <Dialog open={isOpenBotForm} onOpenChange={setIsOpenBotForm}>
             <DialogTrigger asChild>
                 <Button
-                aria-label="go to bot settings page"
+                    aria-label="go to bot settings page"
                     variant="outline"
                     size="sm"
                     className={`backdrop-blur-[10px] bg-transparent py-4 shadow-none ${location.pathname.includes("chatting-page")

@@ -12,8 +12,8 @@ type Props = {
 };
 
 const BotResponseBox: React.FC<Props> = ({ response }) => {
-  const [copiedId, setCopiedId] = useState<number | null>(null);
-  const { theme } = useTheme();
+  const [copiedId, setCopiedId] = useState<number | null>(null); // yaha pe check kr rhe hai ki kiss block ke code ko copy kr rhe hai.
+  const { theme } = useTheme(); // yaha pe hum theme settings ko le rhe hai means light dark wala.
 
   const copyToClipboard = (text: string, id: number) => {
     navigator.clipboard.writeText(text);
