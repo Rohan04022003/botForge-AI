@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useRef, useEffect } from "react";
 import { Mic } from "lucide-react";
 import { useBotContext } from "@/context/BotContext";
@@ -6,9 +7,7 @@ import { useTheme } from "@/context/theme-provider";
 // Add global type for SpeechRecognition
 declare global {
   interface Window {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     SpeechRecognition: any;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     webkitSpeechRecognition: any;
   }
 }
@@ -23,17 +22,16 @@ export const VoiceInput: React.FC<VoiceInputProps> = ({ setMessage }) => {
   const recognitionRef = useRef<SpeechRecognition | null>(null);
   const finalTranscriptRef = useRef<string>("");
 
-  const { theme } = useTheme();
+  const { theme } = useTheme(); // theme use kr rhe hai yaha pe.
 
-  const { listening, setListening } = useBotContext();
+  const { listening, setListening } = useBotContext(); // yaha pe jo bhi listening hai user ka woh set and get kr rhe hai.
 
   useEffect(() => {
     const SpeechRecognition =
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
 
     if (!SpeechRecognition) {
-      console.error("❌ Speech Recognition not supported in this browser.");
+      console.error("Speech Recognition not supported in this browser.");
       return;
     }
 
@@ -59,7 +57,6 @@ export const VoiceInput: React.FC<VoiceInputProps> = ({ setMessage }) => {
       setMessage(finalTranscriptRef.current + interimTranscript);
     };
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     recognition.onerror = (event: { error: any; }) => {
       console.error("🎤 Speech recognition error:", event.error);
     };
@@ -84,8 +81,8 @@ export const VoiceInput: React.FC<VoiceInputProps> = ({ setMessage }) => {
 
   return (
     <div
-    role="button"
-    aria-label="Activate voice command"
+      role="button"
+      aria-label="Activate voice command"
       onClick={toggleListening}
       className={`w-8 h-8 rounded-full border ${listening ? "bg-red-500 border-none animate-pulse" : "bg-transparent border-2 dark:border-neutral-700 border-[#408BFF]"
         } flex justify-center items-center cursor-pointer transition `}

@@ -7,12 +7,12 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 const UserOnboardingModal = () => {
-    const { setUser } = useUser();
-    const [name, setName] = useState("");
-    const [gender, setGender] = useState("");
-    const [email, setEmail] = useState("");
+    const { setUser } = useUser(); // yaha se user ke data ko set kr rhe hai. jb user first time login krega.
+    const [name, setName] = useState(""); // user ka name.
+    const [gender, setGender] = useState(""); // user ka gender.
+    const [email, setEmail] = useState(""); // user ka email.
 
-    const handleSubmit = () => {
+    const handleSubmit = () => { // jb user click krega tb user set ho jayeaga local storage me.
         if (!name.trim() || !gender || !email.trim()) return;
         setUser({ name: name.trim(), email: email.trim(), gender });
     };
