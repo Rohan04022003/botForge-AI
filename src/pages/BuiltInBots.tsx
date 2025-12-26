@@ -5,9 +5,9 @@ import { Input } from "@/components/ui/input";
 import { Command } from "lucide-react";
 
 const BuiltInBots: React.FC = () => {
-  const { bots } = useBotContext();
-  const [searchTerm, setSearchTerm] = useState("");
-  const searchInputRef = useRef<HTMLInputElement>(null);
+  const { bots } = useBotContext(); // yaha pe sare bots ko get kr rhe hai.
+  const [searchTerm, setSearchTerm] = useState(""); // iska use bots ko search krne ke liye kiye hai.
+  const searchInputRef = useRef<HTMLInputElement>(null); // search input ka refference lene ke liye.
 
   // Search input pe focus krne ke liye code likha hai
   const filteredBots = bots.builtInBots.slice(1).filter((bot) =>

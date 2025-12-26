@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 
 const BotCreationGuide = () => {
-  const navigate = useNavigate();
+  const navigate = useNavigate(); // iska use navigation ke liye kiya hai.
 
   return (
     <div className="md:w-3/4 w-full mx-auto space-y-12 pb-10 pt-4 text-base text-neutral-800 dark:text-neutral-200">

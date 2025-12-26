@@ -1,4 +1,4 @@
-export const getPlaceholder = (view: string) => {
+export const getPlaceholder = (view: string) => { // yeh home page ke input me as a placeholder use huaa hai.
         switch (view) {
             case "BotForge AI":
                 return "Ask anything... I'm your all in one AI assistant!";

@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import React, { createContext, useContext, useState, useEffect } from "react";
 import data from "@/data/BotData.json";
 import type { BotContextType, BotsData, Bot, ChatEntry } from "@/types/types";

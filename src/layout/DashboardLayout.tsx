@@ -6,7 +6,7 @@ import { useUser } from "@/context/UserContext";
 import UserOnboardingModal from "@/components/UserOnboardingModal";
 
 const DashboardLayout = () => {
-  const { user } = useUser();
+  const { user } = useUser(); // user ko get kiya hai yaha pe.
 
   return (
     <SidebarProvider

@@ -17,9 +17,9 @@ import { Button } from "@/components/ui/button";
 import { VoiceInput } from "@/components/VoiceInput";
 
 const ChatInterface = () => {
-  const { botID } = useParams();
-  const [message, setMessage] = useState("");
-  const [currentBot, setCurrentBot] = useState<Bot | null>(null);
+  const { botID } = useParams(); // params se bot id ko get kr rhe hai.
+  const [message, setMessage] = useState(""); // user message ko set & get kr rhe hai.
+  const [currentBot, setCurrentBot] = useState<Bot | null>(null); // current using bot ko rakh rhe hai.
 
   const {
     bots,
@@ -60,12 +60,12 @@ const ChatInterface = () => {
     }
   }, [botID, bots, setModel, setBotRole]);
 
-  const handleModelChange = (newModel: string, id: string = "0") => {
+  const handleModelChange = (newModel: string, id: string = "0") => { // iska use model ko change krne ke liye hai.
     setModel(newModel);
     saveBotModel(newModel, id);
   };
 
-  const handleSend = async () => {
+  const handleSend = async () => { // user ka message send hoga respected ai ke pass.
     handleSendMessage({
       message,
       model,
@@ -80,7 +80,7 @@ const ChatInterface = () => {
     setMessage("");
   };
 
-  const showGreeting = !userMessage && !botResponse && !loading;
+  const showGreeting = !userMessage && !botResponse && !loading; // greetings kb kb show hoga uska logic hai.
 
   return (
     <div className="flex flex-col min-h-[90vh] bg-background relative">
