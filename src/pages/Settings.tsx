@@ -51,7 +51,6 @@ const Settings = () => {
     }
   }, [showProfileForm, user])
 
-  // ------------------------------------------
   // Delete user ka function
   const deleteAccount = () => {
     resetBots();

@@ -1,5 +1,5 @@
 import { PieChart } from "lucide-react";
-
+// coming soon.
 const Statistics = () => {
   return (
     <div className="h-[80vh] w-full flex justify-center items-center">

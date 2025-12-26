@@ -2,7 +2,7 @@ import { Suspense, lazy } from "react";
 import { Routes, Route } from "react-router-dom";
 import DashboardLayout from "@/layout/DashboardLayout";
 import ScrollToTop from "@/components/ScrollToTop";
-
+// lazy loading ka use kiye hai because of performance.
 const Dashboard = lazy(() => import("@/pages/Dashboard"));
 const MyBots = lazy(() => import("@/pages/MyBots"));
 const CreateBot = lazy(() => import("@/pages/CreateBot"));

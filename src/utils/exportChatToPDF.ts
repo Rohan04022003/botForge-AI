@@ -72,7 +72,7 @@ const addWrappedText = (
       doc.addPage();
       y = 20;
 
-      // 🔥 Page break ke baad font reset karo
+      // Page break ke baad font reset karo
       doc.setFont("helvetica", "normal");
       doc.setFontSize(12);
       doc.setTextColor(100);

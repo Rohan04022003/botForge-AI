@@ -9,11 +9,11 @@ import { Link, useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
 
-  const { bots } = useBotContext();
-  const navigate = useNavigate();
-  const [filteredBots, setFilteredBots] = useState<BotsData>(bots);
-  const [activeView, setActiveView] = useState("BotForge AI");
-  const [searchInputs, setSearchInputs] = useState("");
+  const { bots } = useBotContext(); // bots ko get kr rhe hai.
+  const navigate = useNavigate(); // navigation ke liye.
+  const [filteredBots, setFilteredBots] = useState<BotsData>(bots); // iska use bots ko filter krne ke liye hai.
+  const [activeView, setActiveView] = useState("BotForge AI"); // default active bot.
+  const [searchInputs, setSearchInputs] = useState(""); // yeh search input hai.
 
   useEffect(() => {
     const search = searchInputs.trim().toLowerCase(); // yaha pe inputs ko lower case me kiya ki errors na aaye

@@ -2,6 +2,7 @@ import { generateId } from "./generateId";
 import { getModelResponse } from "@/router/modelRouter";
 import type { ChatEntry, HandleSendProps } from "@/types/types";
 
+// yaha se finaly model(gemini, cohere, mistral) ke pass data send kr rhe hai.
 export const handleSendMessage = async ({
     message,
     model,
