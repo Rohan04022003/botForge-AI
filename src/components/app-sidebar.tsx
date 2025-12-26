@@ -25,11 +25,11 @@ import { useUser } from "@/context/UserContext";
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 
-  const location = useLocation();
-  const navigate = useNavigate();
-  const { botID } = useParams();
-  const { user } = useUser()
-  const { isMobile, setOpenMobile } = useSidebar();
+  const location = useLocation(); // page location ke liye.
+  const navigate = useNavigate(); // page navigation ke liye.
+  const { botID } = useParams(); // bot id from params
+  const { user } = useUser() // user data liye hai yaha se.
+  const { isMobile, setOpenMobile } = useSidebar(); // yeh mobile me side bar ke liye hai.
 
   // yaha pe usreData ke help se avatarList ko fetch kr rhe hai avatar image show krne ke liye gender ke according.
   const presentUser = avatarList.filter((avatar) => avatar.gender.toLowerCase() === user?.gender)
@@ -73,7 +73,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             ))}
           </SidebarMenu>
         </SidebarGroup>
-        <SideChatsHistory botID={botID} />
+        <SideChatsHistory botID={botID} /> {/* chat history botId ke base pe show karega. */}
       </SidebarContent>
 
 
