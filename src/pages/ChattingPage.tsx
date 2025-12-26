@@ -61,7 +61,6 @@ const ChatInterface = () => {
   }, [botID, bots, setModel, setBotRole]);
 
   const handleModelChange = (newModel: string, id: string = "0") => {
-    console.log(newModel);
     setModel(newModel);
     saveBotModel(newModel, id);
   };

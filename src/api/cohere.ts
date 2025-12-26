@@ -42,7 +42,6 @@ export const fetchCohereResponse = async (
     }
 
     const data = await response.json();
-    console.log(data)
     return (
       data?.message?.content?.[1]?.text ||
       "No response received."
