@@ -8,7 +8,7 @@ import cohere_logo from '@/assets/cohere.svg'
 
 const BotCard: React.FC<BotCardProp> = ({ bot }) => {
 
-  const navigate = useNavigate()
+  const navigate = useNavigate() // page navigate ke liye.
 
   return (
     <div className="w-full flex flex-col justify-between rounded-xl border border-gray-200 dark:border-gray-700 bg-white/30 dark:bg-white/5 backdrop-blur-md p-4 transition-all hover:shadow-lg hover:scale-[102%] duration-300">

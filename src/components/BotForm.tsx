@@ -19,27 +19,25 @@ import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { RotateCcw, Sparkles, } from "lucide-react";
 
 const BotForm: React.FC<BotFormProps> = ({ botId, openBotForm }) => {
-    const [addModel, setAddModel] = useState("gemini");
-    const [botName, setBotName] = useState("");
-    const [greetings, setGreetings] = useState("");
-    const [description, setDescription] = useState("");
-    const [role, setRole] = useState("");
-    const [category, setCategory] = useState("");
-    const [isBotNameDuplicate, setIsBotNameDuplicate] = useState(false);
-    const [confirmDeleteInput, setConfirmDeleteInput] = useState("");
+    const [addModel, setAddModel] = useState("gemini"); // model ko set kr rhe hai.
+    const [botName, setBotName] = useState(""); // yaha pe bot name set kr rhe hai.
+    const [greetings, setGreetings] = useState(""); // yaha pe bot ki greetings set kr rhe hai.
+    const [description, setDescription] = useState(""); // description set kr rhe hai.
+    const [role, setRole] = useState(""); // bot ka role set kr rhe hai.
+    const [category, setCategory] = useState(""); // category set kr rhe hai.
+    const [isBotNameDuplicate, setIsBotNameDuplicate] = useState(false); // yaha pe check kr rhe hai ki bot unique ho.
+    const [confirmDeleteInput, setConfirmDeleteInput] = useState(""); // bot name same ho toh delete logic dekh rhe hai.
 
-    // page navigation ke liye
-    const navigate = useNavigate();
+    const navigate = useNavigate(); // page navigation ke liye
 
-    //bot ka name params se liya hai
-    const [searchParams] = useSearchParams();
-    const suggestedName = searchParams.get("botName")
+    const [searchParams] = useSearchParams(); // page navigation ke liye
+    const suggestedName = searchParams.get("botName") // user ne jo bot search kiya hai usko botname me set krne ke liye.
 
-    const { addBot, editBot, deleteBot, bots } = useBotContext();
+    const { addBot, editBot, deleteBot, bots } = useBotContext(); // bot context se inn sare methods ko use kr rhe hai.
 
-    const currentBotSettings = bots.userCreatedBots.find((bot) => bot.id === botId)
+    const currentBotSettings = bots.userCreatedBots.find((bot) => bot.id === botId) // current bot jb open hai uske sare settings le rhe hai.
 
-    const categories: { key: BotCategory; label: string }[] = [
+    const categories: { key: BotCategory; label: string }[] = [ // yeh sb bot ke categories hai.
         { key: "general", label: "General Assistant" },
         { key: "assistant", label: "Personal Assistant" },
         { key: "developer", label: "Developer Tools" },
